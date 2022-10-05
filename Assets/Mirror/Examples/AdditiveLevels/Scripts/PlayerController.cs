@@ -60,7 +60,7 @@ namespace Mirror.Examples.AdditiveLevels
             if (isGrounded)
                 isFalling = false;
 
-            if ((isGrounded || !isFalling) && jumpSpeed < 1f && Input.GetKey(KeyCode.Space))
+            if ((isGrounded || !isFalling) && jumpSpeed < 1f && Input.GetKeyDown(KeyCode.Space))
             {
                 jumpSpeed = Mathf.Lerp(jumpSpeed, 1f, 0.5f);
             }
