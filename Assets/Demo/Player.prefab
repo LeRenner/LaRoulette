@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 4419699118771935537}
   - component: {fileID: 1219750942475360955}
   - component: {fileID: 1914511288648494125}
-  - component: {fileID: -2146213263980855937}
   - component: {fileID: -6977717907422526421}
   - component: {fileID: 6491276420914925398}
   m_Layer: 0
@@ -169,7 +168,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2246701830110914541}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22a809aa55c02b34c8663e06ac6b4e66, type: 3}
   m_Name: 
@@ -181,7 +180,7 @@ MonoBehaviour:
   lookSensitivity: 4.24
   maxUpRotation: 90
   maxDownRotation: 90
-  controller: {fileID: -2146213263980855937}
+  controller: {fileID: 0}
   walkSpeed: 2
   strafeSpeed: 2
   sprintKey: 306
@@ -192,24 +191,6 @@ MonoBehaviour:
   floatingInfo: {fileID: 6829587021429615879}
   playerName: 
   playerColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!143 &-2146213263980855937
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2246701830110914541}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.03
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.0001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-6977717907422526421
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -218,14 +199,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2246701830110914541}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1.6
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &6491276420914925398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,17 +221,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  characterController: {fileID: -2146213263980855937}
-  moveSpeed: 4
-  turnSensitivity: 10
-  maxTurnSpeed: 100
-  horizontal: 0
-  vertical: 0
-  turn: 0
-  jumpSpeed: 0
-  isGrounded: 1
-  isFalling: 0
-  velocity: {x: 0, y: 0, z: 0}
+  sensX: 700
+  sensY: 700
+  moveSpeed: 6
+  dragForce: 5
+  jumpForce: 12.5
+  jumpCooldown: 0.25
+  airMultiplier: 0.25
 --- !u!1 &2536438001463898355
 GameObject:
   m_ObjectHideFlags: 0

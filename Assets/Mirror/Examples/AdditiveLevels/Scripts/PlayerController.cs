@@ -3,93 +3,126 @@
 namespace Mirror.Examples.AdditiveLevels
 {
     [RequireComponent(typeof(CapsuleCollider))]
-    [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(NetworkTransform))]
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : NetworkBehaviour
     {
-        public CharacterController characterController;
+        [Header("Camera")]
+        public float sensX;
+        public float sensY;
 
-        [Header("Movement Settings")]
-        public float moveSpeed = 8f;
-        public float turnSensitivity = 5f;
-        public float maxTurnSpeed = 100f;
+        float xRotation;
+        float yRotation;
 
-        [Header("Diagnostics")]
-        public float horizontal;
-        public float vertical;
-        public float turn;
-        public float jumpSpeed;
-        public bool isGrounded = true;
-        public bool isFalling;
-        public Vector3 velocity;
+        [Header("Movement")]
+        public float moveSpeed;
+        public float dragForce;
+
+        public float jumpForce;
+        public float jumpCooldown;
+        public float airMultiplier;
+        bool readyToJump = true;
+
+        KeyCode jumpKey = KeyCode.Space;
+
+        float hInput;
+        float vInput;
+
+        Vector3 moveDirection;
+        Rigidbody rb;
+
+        bool isGrounded;
+        float height;
 
         void OnValidate()
         {
-            if (characterController == null)
-                characterController = GetComponent<CharacterController>();
-
-            characterController.enabled = false;
-            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<NetworkTransform>().clientAuthority = true;
         }
 
         public override void OnStartLocalPlayer()
         {
-            characterController.enabled = true;
-        }
+            Camera.main.transform.SetParent(transform);
+            Camera.main.transform.localPosition = new Vector3(0, 0, 0);
 
-        void Update()
-        {
-            if (!isLocalPlayer || characterController == null || !characterController.enabled)
-                return;
+            rb = GetComponent<Rigidbody>();
+            rb.freezeRotation = true;
 
-            horizontal = Input.GetAxis("Horizontal");
-            vertical = Input.GetAxis("Vertical");
-
-            // Q and E cancel each other out, reducing the turn to zero
-            if (Input.GetKey(KeyCode.Q))
-                turn = Mathf.MoveTowards(turn, -maxTurnSpeed, turnSensitivity);
-            if (Input.GetKey(KeyCode.E))
-                turn = Mathf.MoveTowards(turn, maxTurnSpeed, turnSensitivity);
-            if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.E))
-                turn = Mathf.MoveTowards(turn, 0, turnSensitivity);
-            if (!Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.E))
-                turn = Mathf.MoveTowards(turn, 0, turnSensitivity);
-
-            if (isGrounded)
-                isFalling = false;
-
-            if ((isGrounded || !isFalling) && jumpSpeed < 1f && Input.GetKeyDown(KeyCode.Space))
-            {
-                jumpSpeed = Mathf.Lerp(jumpSpeed, 1f, 0.5f);
-            }
-            else if (!isGrounded)
-            {
-                isFalling = true;
-                jumpSpeed = 0;
-            }
+            height = GetComponent<CapsuleCollider>().height;
         }
 
         void FixedUpdate()
         {
-            if (!isLocalPlayer || characterController == null || !characterController.enabled)
-                return;
+            MovePlayer();
+        }
 
-            transform.Rotate(0f, turn * Time.fixedDeltaTime, 0f);
+        void Update()
+        {
+            if (!isLocalPlayer) { return; }
 
-            Vector3 direction = new Vector3(horizontal, jumpSpeed, vertical);
-            direction = Vector3.ClampMagnitude(direction, 1f);
-            direction = transform.TransformDirection(direction);
-            direction *= moveSpeed;
+            isGrounded = Physics.Raycast(transform.position, Vector3.down, height * 0.5f + 0.2f);
 
-            if (jumpSpeed > 0)
-                characterController.Move(direction * Time.fixedDeltaTime);
+            GetMoveInput();
+            GetJumpInput();
+
+            // Limita velocidade horizontal
+            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            if (flatVelocity.magnitude > moveSpeed)
+            {
+                Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
+                rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+            }
+
+            if (isGrounded)
+                rb.drag = dragForce;
             else
-                characterController.SimpleMove(direction);
+                rb.drag = 0f;
 
-            isGrounded = characterController.isGrounded;
-            velocity = characterController.velocity;
+            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+
+            yRotation += mouseX;
+            xRotation = Mathf.Clamp(xRotation - mouseY, -90f, 90f);
+
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        }
+
+        private void GetMoveInput()
+        {
+            hInput = Input.GetAxisRaw("Horizontal");
+            vInput = Input.GetAxisRaw("Vertical");
+        }
+
+        private void GetJumpInput()
+        {
+            if (Input.GetKey(jumpKey) && readyToJump && isGrounded)
+            {
+                readyToJump = false;
+                Jump();
+                Invoke(nameof(ResetJump), jumpCooldown);
+            }
+        }
+
+        private void MovePlayer()
+        {
+            Vector3 heading = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+            moveDirection = heading * vInput + transform.right * hInput;
+
+            if (isGrounded)
+                rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            else if (!isGrounded)
+                rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        }
+
+        private void Jump()
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+
+        private void ResetJump()
+        {
+            readyToJump = true;
         }
     }
 }
