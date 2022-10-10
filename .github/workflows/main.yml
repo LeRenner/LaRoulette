@@ -28,13 +28,13 @@ jobs:
           git add .
           git reset --hard
 
-      # Cache
-      - uses: actions/cache@v2
-        with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
+    #   # Cache
+    #   - uses: actions/cache@v2
+    #     with:
+    #       path: Library
+    #       key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+    #       restore-keys: |
+    #         Library-
 
        # Activate
       - name: Unity - Activate
