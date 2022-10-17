@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Demo/Scenes/SampleScene.unity
+    path: Assets/Scenes/Lobby/Lobby.unity
     guid: 8476e757e0a351a4abf0a57b053dd5d6
   - enabled: 1
-    path: Assets/Demo/Scenes/minigame1.unity
+    path: Assets/Scenes/Maze_minigame/minigame1.unity
     guid: ebb1183470bc7cb479bd315f5fd464e7
   m_configObjects: {}
