@@ -66,7 +66,7 @@ namespace QuickStart
         public override void OnStartLocalPlayer()
         {
             Camera.main.transform.SetParent(transform);
-            Camera.main.transform.localPosition = new Vector3(0, 0.5f, 1);
+            Camera.main.transform.localPosition = new Vector3(0, 0.3f, 0.5f);
         if(lockCursor) {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

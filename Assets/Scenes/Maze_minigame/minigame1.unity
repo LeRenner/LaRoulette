@@ -22484,8 +22484,8 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   serverTickRate: 30
-  offlineScene: Assets/Demo/Scenes/minigame1.unity
-  onlineScene: Assets/Demo/Scenes/minigame1.unity
+  offlineScene: 
+  onlineScene: 
   transport: {fileID: 926712735}
   networkAddress: localhost
   maxConnections: 100
