@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Mirror;
+using TMPro;
 
 public class goaltrigger : NetworkBehaviour
 {
@@ -22,5 +23,14 @@ public class goaltrigger : NetworkBehaviour
 	public int p1Score = 0;
 	[SyncVar]
 	public int p2Score = 0;
+	public TextMeshProUGUI p1ScoreText;
+	public TextMeshProUGUI p2ScoreText;
+	[Command]
+	private void Update()
+	{
+		p1ScoreText.text = p1Score.ToString();
+		p2ScoreText.text = p2Score.ToString();
+		
+	}
 
 }
