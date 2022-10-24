@@ -78,13 +78,7 @@ namespace Mirror.Examples.AdditiveLevels
             else
                 rb.drag = 0f;
 
-            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
-
-            yRotation += mouseX;
-            xRotation = Mathf.Clamp(xRotation - mouseY, -90f, 90f);
-
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            FollowMouseView();
         }
 
         private void GetMoveInput()
@@ -112,6 +106,21 @@ namespace Mirror.Examples.AdditiveLevels
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
             else if (!isGrounded)
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+
+            Camera.main.transform.position = transform.position;
+        }
+
+        private void FollowMouseView()
+        {
+            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+
+            yRotation += mouseX;
+            xRotation = Mathf.Clamp(xRotation - mouseY, -90f, 90f);
+
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+
+            Camera.main.transform.rotation = transform.rotation;
         }
 
         private void Jump()
