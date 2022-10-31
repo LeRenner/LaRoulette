@@ -14,4 +14,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Futebor_minigame/minigame2.unity
     guid: 1e29d41127a304f4ebfb3702b14d24fd
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 2dad46159db8fde47a3eb0cd5d7b0b28, type: 2}
