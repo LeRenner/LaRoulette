@@ -6,6 +6,7 @@ TagManager:
   tags:
   - P1Goal
   - P2Goal
+  - Out
   layers:
   - Default
   - TransparentFX
