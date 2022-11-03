@@ -5,15 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Lobby/Lobby.unity
     guid: 8476e757e0a351a4abf0a57b053dd5d6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Maze_minigame/minigame1.unity
     guid: ebb1183470bc7cb479bd315f5fd464e7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Futebor_minigame/minigame2.unity
     guid: 1e29d41127a304f4ebfb3702b14d24fd
+  - enabled: 1
+    path: Assets/Scenes/VRtesting/testing.unity
+    guid: cf0f72da04abcdd4198513f9a07b19cc
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 8ef6f204be0a68d4c9768a9ed641084a, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 4ff7d7c127039b84690e6e99b1259b88, type: 2}
