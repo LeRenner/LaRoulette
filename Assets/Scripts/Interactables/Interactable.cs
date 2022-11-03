@@ -8,8 +8,10 @@ public enum ButtonState : byte
     Open, Closed
 }
 
+
 public class Interactable : NetworkBehaviour
 {
+	public string sceneName;
     private bool clicked = false;
     [SyncVar]
     public ButtonState buttonState;
@@ -53,7 +55,7 @@ public class Interactable : NetworkBehaviour
     {
       if (NetworkServer.connections.Count == readys)
       {
-        NetworkManager.singleton.ServerChangeScene("minigame1");
+        NetworkManager.singleton.ServerChangeScene(sceneName);
       }
       return;
     }

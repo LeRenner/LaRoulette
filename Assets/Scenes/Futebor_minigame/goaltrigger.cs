@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Mirror;
@@ -25,12 +24,21 @@ public class goaltrigger : NetworkBehaviour
 	public int p2Score = 0;
 	public TextMeshProUGUI p1ScoreText;
 	public TextMeshProUGUI p2ScoreText;
-	[Command]
+	[Command(requiresAuthority = false)]
 	private void Update()
 	{
-		p1ScoreText.text = p1Score.ToString();
-		p2ScoreText.text = p2Score.ToString();
+		RpcScoreUp();
 		
 	}
+	[ClientRpc]
+	public void RpcScoreUp()
+	{
+		if (!isLocalPlayer)
+		{
+			p1ScoreText.text = p1Score.ToString();
+			p2ScoreText.text = p2Score.ToString();
+		}
+	}
+	
 
 }
