@@ -15,4 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Futebor_minigame/minigame2.unity
     guid: 1e29d41127a304f4ebfb3702b14d24fd
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 8ef6f204be0a68d4c9768a9ed641084a, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 4ff7d7c127039b84690e6e99b1259b88, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 2dad46159db8fde47a3eb0cd5d7b0b28, type: 2}
