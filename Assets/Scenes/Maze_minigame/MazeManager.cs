@@ -19,7 +19,6 @@ public class MazeManager : NetworkBehaviour
 	{
 		if (TimerOffScript.isTrigger() && !trigger)
 		{
-			Debug.Log("Oi");
 			trigger = true;
 			Walls.SetActive(false);
 		}
