@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 1351859619613942162}
   - component: {fileID: 4419699118771935537}
   - component: {fileID: 1219750942475360955}
-  - component: {fileID: 1914511288648494125}
   - component: {fileID: -2146213263980855937}
   - component: {fileID: -6977717907422526421}
-  - component: {fileID: 6491276420914925398}
+  - component: {fileID: 1215695380819833486}
+  - component: {fileID: 7183387118429219115}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -161,36 +161,6 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
---- !u!114 &1914511288648494125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2246701830110914541}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a809aa55c02b34c8663e06ac6b4e66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  cam: {fileID: 0}
-  lockCursor: 1
-  lookSensitivity: 4.24
-  maxUpRotation: 90
-  maxDownRotation: 90
-  controller: {fileID: -2146213263980855937}
-  walkSpeed: 2
-  strafeSpeed: 2
-  sprintKey: 306
-  sprintFactor: 2.521
-  jumpHeight: 3
-  maxJumps: 1
-  playerNameText: {fileID: 6260459057229245305}
-  floatingInfo: {fileID: 6829587021429615879}
-  playerName: 
-  playerColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!143 &-2146213263980855937
 CharacterController:
   m_ObjectHideFlags: 0
@@ -225,7 +195,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &6491276420914925398
+--- !u!114 &1215695380819833486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,18 +204,116 @@ MonoBehaviour:
   m_GameObject: {fileID: 2246701830110914541}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e10150710dde14b83d3c8f5aa853c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 17bedf8700613bc4b829743017046afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  sensX: 800
-  sensY: 800
+  sensX: 80
+  sensY: 80
   moveSpeed: 6
   dragForce: 5
   jumpForce: 6
   jumpCooldown: 0.25
-  airMultiplier: 0.25
+  airMultiplier: 0.5
+--- !u!114 &7183387118429219115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2246701830110914541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: b462371f5f7cacd4fb8dfdea5309c0bf, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1215695380819833486}
+        m_TargetAssemblyTypeName: Mirror.Examples.AdditiveLevels.PlayerController,
+          Assembly-CSharp
+        m_MethodName: Movement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d477b0b6-66e0-4f8d-8901-635475dc64e4
+    m_ActionName: PlayerControls/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1215695380819833486}
+        m_TargetAssemblyTypeName: Mirror.Examples.AdditiveLevels.PlayerController,
+          Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ff1d6bf5-4b02-4d20-8113-cfba3729ab10
+    m_ActionName: PlayerControls/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1215695380819833486}
+        m_TargetAssemblyTypeName: Mirror.Examples.AdditiveLevels.PlayerController,
+          Assembly-CSharp
+        m_MethodName: MouseX
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c396acc0-26b4-4db8-9505-d0d47357e0b1
+    m_ActionName: PlayerControls/MouseX[/Mouse/delta/x]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1215695380819833486}
+        m_TargetAssemblyTypeName: Mirror.Examples.AdditiveLevels.PlayerController,
+          Assembly-CSharp
+        m_MethodName: MouseY
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 600504cc-7bfb-4041-abef-8b401bdca3ad
+    m_ActionName: PlayerControls/MouseY[/Mouse/delta/y]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerControls
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &4784648107311284706
 GameObject:
   m_ObjectHideFlags: 0
