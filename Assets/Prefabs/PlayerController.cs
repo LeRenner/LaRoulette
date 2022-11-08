@@ -54,8 +54,13 @@ namespace Mirror.Examples.AdditiveLevels
 
             rb = GetComponent<Rigidbody>();
             rb.freezeRotation = true;
-
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             height = GetComponent<CapsuleCollider>().height;
+            if  (SystemInfo.deviceType != DeviceType.Handheld)
+            {
+                GameObject.Destroy(transform.GetChild(0).gameObject);
+            }
         }
 
         void FixedUpdate()
@@ -144,7 +149,6 @@ namespace Mirror.Examples.AdditiveLevels
 
     	public void Movement(InputAction.CallbackContext value) {
             movement = value.ReadValue<Vector2>();
-            Debug.Log("Oi");
     	}
 
     	public void Jump(InputAction.CallbackContext value) {

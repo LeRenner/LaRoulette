@@ -23,11 +23,7 @@ public class score : NetworkBehaviour
 		{
 			setScore("P2Goal");
 		}
-		else if (other.CompareTag("Out"))
-		{
-		transform.localPosition = new Vector3(0, 20, 0);
- 		GetComponent<Rigidbody>().velocity = Vector3.zero;
-		}
+
 	}
 	
 	[Command(requiresAuthority = false)]

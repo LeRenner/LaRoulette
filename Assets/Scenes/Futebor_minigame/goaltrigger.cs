@@ -24,15 +24,26 @@ public class goaltrigger : NetworkBehaviour
 	public int p2Score = 0;
 	public TextMeshProUGUI p1ScoreText;
 	public TextMeshProUGUI p2ScoreText;
+	public TIMER TimerOffScript;
+	bool trigger = false;
 	[Command(requiresAuthority = false)]
 	private void Update()
 	{
+
+		if (TimerOffScript.isTrigger() && !trigger)
+		{
+			trigger = true;
+			NetworkManager.singleton.ServerChangeScene("Lobby");
+
+		}
+
 		RpcScoreUp();
 		
 	}
 	[ClientRpc]
 	public void RpcScoreUp()
 	{
+		
 		if (!isLocalPlayer)
 		{
 			p1ScoreText.text = p1Score.ToString();

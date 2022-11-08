@@ -277,5 +277,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTriggered: 0
   startingTime: 10
-  hsLabel: {fileID: 0}
+  hsLabel: {fileID: 1432842098674136620}
   countdownText: {fileID: 1432842099800908511}
