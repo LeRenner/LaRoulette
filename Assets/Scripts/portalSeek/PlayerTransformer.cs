@@ -8,23 +8,23 @@ public class PlayerTransformer : ScriptableObject{
 
     private GameManager gameManager;
 
-    CreatePlayerMessage cloneHiderPrefab(){
-        return new CreatePlayerMessage{
+    ReplacePlayerMessage cloneHiderPrefab(){
+        return new ReplacePlayerMessage{
             prefabPlayer = gameManager.hiderPlayer.ToString()        
         };
     }
 
-    CreatePlayerMessage cloneSeekerPrefab(){
+    ReplacePlayerMessage cloneSeekerPrefab(){
 /*         var hiderPlayer = Instantiate(gameManager.hiderPlayer) as GameObject;
         player.transform.parent = hiderPlayer.transform; */
         //hiderPlayer.transform.parent = player.transform;
-        return new CreatePlayerMessage {
+        return new ReplacePlayerMessage {
             prefabPlayer = gameManager.seekerPlayer.ToString()         
         };
     }
 
 
-    public CreatePlayerMessage instantiatePlayer(PlayerType type){
+    public ReplacePlayerMessage instantiatePlayer(PlayerType type){
         if (type == PlayerType.HIDER){
             return cloneHiderPrefab();
         } else {

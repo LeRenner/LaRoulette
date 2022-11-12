@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     private PlayerTransformer playerTransformer;
 
-    public CreatePlayerMessage HandleNewPlayerEntrance(){
+    public ReplacePlayerMessage HandleNewPlayerEntrance(){
 
         var playerType = listaDeJogadores.Count == 0 ? PlayerType.SEEKER : PlayerType.HIDER;
         //listaDeJogadores.Add(newPlayer);
@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
+        
     }
 
 
