@@ -27,6 +27,11 @@ public class PlayerPortal : NetworkBehaviour
     public Weapon weapon;
     public PortalManager portalMan;
 
+    [Header("Player Type")]
+    public bool Hider;
+    private int total_hiders;
+    private int points;
+    public bool seekerWon;
 
     KeyCode jumpKey = KeyCode.Space;
 
@@ -38,6 +43,18 @@ public class PlayerPortal : NetworkBehaviour
 
     bool isGrounded;
     float height;
+
+    void Start() {
+        seekerWon = false;
+
+        if (Hider)
+            gameObject.tag = "Hider";
+        else {
+            points = 0;
+            gameObject.tag = "Seeker";
+            total_hiders = GameObject.FindGameObjectsWithTag("Hider").Length;
+        }
+    }
 
     void OnValidate()
     {
@@ -69,7 +86,7 @@ public class PlayerPortal : NetworkBehaviour
 
         GetMoveInput();
         GetJumpInput();
-        GetFireInput();
+        if (Hider) GetFireInput();
         
         // Limita velocidade horizontal
         Vector3 flatVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
@@ -148,7 +165,6 @@ public class PlayerPortal : NetworkBehaviour
         if (isGrounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         else if (!isGrounded){
-
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
     }
@@ -162,5 +178,28 @@ public class PlayerPortal : NetworkBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    void OnCollisionEnter(Collision collision) {
+
+        if (!Hider && collision.gameObject.tag == "Hider") {
+            points++;
+
+            if (points == total_hiders) {
+                Debug.Log("Seeker Wins");
+                seekerWon = true;
+            }
+
+            Debug.Log("mata");
+        }
+        else if (Hider && collision.gameObject.tag == "Seeker") {
+            Destroy(gameObject); // talvez so n deixar mover
+            Debug.Log("morre");
+        }
+        else if(collision.gameObject.tag == "Hider") {
+            Destroy(gameObject);
+            Debug.Log("lol");
+            // go to seeker camera?
+        }
     }
 }
