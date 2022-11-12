@@ -437,15 +437,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  sensX: 0
-  sensY: 0
-  moveSpeed: 0
-  dragForce: 0
-  jumpForce: 0
-  jumpCooldown: 0
-  airMultiplier: 0
-  weapon: {fileID: 0}
-  portalMan: {fileID: 0}
+  sensX: 80
+  sensY: 80
+  moveSpeed: 6
+  dragForce: 5
+  jumpForce: 6
+  jumpCooldown: 0.25
+  airMultiplier: 0.5
+  weapon: {fileID: 5975641838455077162}
+  portalMan: {fileID: 9164542150056887581, guid: 6a0512dd91ee9185faf24d4e005d3cf1, type: 3}
 --- !u!1 &6605207978537147199
 GameObject:
   m_ObjectHideFlags: 0

@@ -147,4 +147,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inP: 0
   playerName: 
-  portalMan: {fileID: 0}
+  portalMan: {fileID: 9164542150056887581, guid: 6a0512dd91ee9185faf24d4e005d3cf1, type: 3}

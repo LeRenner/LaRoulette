@@ -50,13 +50,13 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   serverTickRate: 30
-  offlineScene: 
-  onlineScene: 
+  offlineScene: Assets/Scenes/PortalSeek/PortalSeek.unity
+  onlineScene: Assets/Scenes/PortalSeek/PortalSeek.unity
   transport: {fileID: 3771583516119409694}
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 2246701830110914541, guid: b17e4e276085a694aacc43f81ec956b8, type: 3}
+  playerPrefab: {fileID: 6168757711642144150, guid: a8e12a0f43cf244a781d1cb4023a472e, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs: []
