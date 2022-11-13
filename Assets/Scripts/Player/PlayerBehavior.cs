@@ -145,17 +145,23 @@ namespace Player
             readyToJump = true;
         }
 
+
         public override void OnStartClient() {
             try
             {
-                Debug.Log("tentou logar");
                 vivoxVoiceManager.Login();
             }
             catch (System.Exception)
             {
-                Debug.Log("não logou");
-            } 
+                Debug.LogError("<color=green>VivoxVoice: </color>: Falha no Login");
+            }
         }
+
+        public override void OnStopClient()
+        {
+            vivoxVoiceManager.Logout();
+        }
+
 
         private void JoinLobbyChannel()
         {
@@ -166,10 +172,8 @@ namespace Player
         private void OnUserLoggedIn()
         {
             var lobbychannel = vivoxVoiceManager.ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == LobbyChannelName);
-            if ((vivoxVoiceManager && vivoxVoiceManager.ActiveChannels.Count == 0) 
-                || lobbychannel == null)
+            if ((vivoxVoiceManager && vivoxVoiceManager.ActiveChannels.Count == 0) || lobbychannel == null)
             {
-                Debug.Log("canal não existe");
                 JoinLobbyChannel();
             }
             else
