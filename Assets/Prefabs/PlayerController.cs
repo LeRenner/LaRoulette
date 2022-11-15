@@ -57,10 +57,6 @@ namespace Mirror.Examples.AdditiveLevels
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             height = GetComponent<CapsuleCollider>().height;
-            if  (SystemInfo.deviceType != DeviceType.Handheld)
-            {
-                GameObject.Destroy(transform.GetChild(0).gameObject);
-            }
         }
 
         void FixedUpdate()
