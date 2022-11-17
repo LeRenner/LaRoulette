@@ -16,9 +16,9 @@ public class GameManager : MonoBehaviour
 
    /*  public GameObject hiderPlayerInstance;
     public GameObject seekerPlayerInstance; */
-    private List<Player> listaDeJogadores = new List<Player>();
+    private List<PlayerType> listaDeJogadores = new List<PlayerType>();
 
-    public List<Player> GetListaDeJogadores(){
+    public List<PlayerType> GetListaDeJogadores(){
         return listaDeJogadores;
     }
 
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public ReplacePlayerMessage HandleNewPlayerEntrance(){
 
         var playerType = listaDeJogadores.Count == 0 ? PlayerType.SEEKER : PlayerType.HIDER;
-        //listaDeJogadores.Add(newPlayer);
+        listaDeJogadores.Add(playerType);
         return playerTransformer.instantiatePlayer(playerType);
 
     }
