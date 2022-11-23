@@ -9,6 +9,7 @@ namespace Mirror.Examples.AdditiveLevels
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : NetworkBehaviour
     {
+        public int number;
         [Header("Camera")]
         public float sensX;
         public float sensY;
@@ -87,6 +88,14 @@ namespace Mirror.Examples.AdditiveLevels
                 rb.drag = 0f;
 
             FollowMouseView();
+            
+            if (Input.GetKeyDown(KeyCode.J)){
+                number += 1;
+            }
+
+            if (Input.GetKeyDown(KeyCode.K)){
+                Debug.Log(number);
+            }
         }
 
         private void GetMoveInput()

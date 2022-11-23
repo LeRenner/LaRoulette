@@ -31,9 +31,24 @@ public class goaltrigger : NetworkBehaviour
 	string pop;
 	float timer = 0;
 
+    public GameObject playerPrefab;
+    public GameObject[] players;
+	//public PlayerController sc;
+
+	
 	[Command(requiresAuthority = false)]
 	private void Update()
 	{
+			if (players.Length != 1)
+				players = GameObject.FindGameObjectsWithTag("Player");
+			
+
+				foreach (GameObject player in players)
+				{
+					Debug.Log(player.GetComponent<PlayerScore>().Points);
+
+					
+				}
 
 		if (TimerOffScript.isTrigger() && !trigger)
 		{
@@ -42,6 +57,8 @@ public class goaltrigger : NetworkBehaviour
 			if (p1Score > p2Score) {pop = "Player 1 Wins";}
 			else if (p2Score > p1Score) {pop = "Player 2 Wins";}
 			else if (p1Score == p2Score) {pop = "Tie";}
+
+
 
 			popUp.PopUp(pop);
 

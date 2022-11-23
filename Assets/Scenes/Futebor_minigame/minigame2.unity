@@ -1462,6 +1462,8 @@ MonoBehaviour:
   p2ScoreText: {fileID: 1292581623}
   TimerOffScript: {fileID: 1609796451}
   popUp: {fileID: 726772166}
+  playerPrefab: {fileID: 2246701830110914541, guid: b17e4e276085a694aacc43f81ec956b8, type: 3}
+  players: []
 --- !u!4 &1012863558
 Transform:
   m_ObjectHideFlags: 0
@@ -1621,7 +1623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1432842099800908510, guid: dc38d46f5423e6b428452b9ba0906cac, type: 3}
       propertyPath: startingTime
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc38d46f5423e6b428452b9ba0906cac, type: 3}
