@@ -159,6 +159,7 @@ namespace Player
 
         public override void OnStopClient()
         {
+            vivoxVoiceManager.DisconnectAllChannels();
             vivoxVoiceManager.Logout();
         }
 
