@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         delta = 20;
-        countdown = 10;
+        countdown = 120;
         interval = 0;
     }
 

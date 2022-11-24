@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
 
             PortalGate p = Instantiate(portal, transform.position, rotation);
             p.GetComponent<PortalGate>().playerName = playerName;
-            p.GetComponent<PortalGate>().inP = Type;
+            p.GetComponent<PortalGate>().inPortal = Type;
 
             if (Type) 
                     p.GetComponent<Renderer>().material.color = Color.red;

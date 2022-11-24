@@ -4,7 +4,7 @@ using UnityEngine;
 public class PortalGate : MonoBehaviour
 {
     // Type ==  true, in, left mouse click
-    public bool inP;
+    public bool inPortal;
     public string playerName;
     public PortalManager portalMan;
 
@@ -23,8 +23,8 @@ public class PortalGate : MonoBehaviour
 
     void OnCollisionEnter(Collision collision) {
 
-        if (collision.gameObject.name == playerName && inP) {
-            Transform pos = portalMan.GetComponent<PortalManager>().checkPortal(inP);
+        if (collision.gameObject.name == playerName && inPortal) {
+            Transform pos = portalMan.GetComponent<PortalManager>().checkPortal(inPortal);
 
             var player = GameObject.Find(playerName);
             player.transform.position = pos.position;

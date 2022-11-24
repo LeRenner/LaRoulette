@@ -305,9 +305,11 @@ GameObject:
   - component: {fileID: 4822525736257020009}
   - component: {fileID: 3880311213035077279}
   - component: {fileID: 7260052243926881237}
+  - component: {fileID: 448799125032459455}
+  - component: {fileID: -5145848636137658211}
   m_Layer: 0
   m_Name: PlayerSeeker
-  m_TagString: Untagged
+  m_TagString: Seeker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -516,3 +518,37 @@ MonoBehaviour:
   jumpForce: 12.5
   jumpCooldown: 0.25
   airMultiplier: 0.25
+--- !u!114 &448799125032459455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7146589974548354022}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7913d302189fe9789872e4daf4ccfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  sensX: 200
+  sensY: 200
+  moveSpeed: 6
+  dragForce: 5
+  jumpForce: 6
+  jumpCooldown: 0.25
+  airMultiplier: 0.5
+--- !u!114 &-5145848636137658211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7146589974548354022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade30dd7102c1619aa2a6e0b9e37d6c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seekerWon: 0

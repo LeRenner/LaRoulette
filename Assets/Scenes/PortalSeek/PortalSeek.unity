@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.4964127, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641222, b: 0.57481664, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -223,7 +223,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28236
+  m_Name: pb_Mesh36194
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -381,6 +381,53 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &244194206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 244194208}
+  - component: {fileID: 244194207}
+  m_Layer: 0
+  m_Name: WinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &244194207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244194206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e2dda3e6601506481b14835e2f139c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seeker: {fileID: 0}
+  winner: 
+  timer: {fileID: 646124692}
+--- !u!4 &244194208
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244194206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 529, y: 258, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &276777844 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 29757309229273353, guid: 5b06b558b794337e7b992f51f77b795a, type: 3}
@@ -409,7 +456,7 @@ GameObject:
   - component: {fileID: 323331953}
   m_Layer: 0
   m_Name: Spawnpoints
-  m_TagString: Seeker
+  m_TagString: SeekerSpawnpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -525,7 +572,7 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 6168757711642144150, guid: a8e12a0f43cf244a781d1cb4023a472e, type: 3}
+  playerPrefab: {fileID: 2642599991580951478, guid: e3ca25002121b13669a8eb9f89d5ffb5, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
@@ -720,7 +767,7 @@ GameObject:
   - component: {fileID: 429267252}
   m_Layer: 0
   m_Name: Spawnpoints (1)
-  m_TagString: Hider
+  m_TagString: HiderSpawnpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -873,8 +920,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4eda60698f13f6c58a74515f2780b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiderPlayer: {fileID: 6168757711642144150, guid: a8e12a0f43cf244a781d1cb4023a472e, type: 3}
-  seekerPlayer: {fileID: 7146589974548354022, guid: 5c0c2f77f9ddc0f21ab10ae2a04c7c53, type: 3}
+  hiderPlayer: {fileID: 2642599991580951478, guid: e3ca25002121b13669a8eb9f89d5ffb5, type: 3}
+  seekerPlayer: {fileID: 7155121686644239289, guid: 82d4b32f5cde4195089a430f48ce684b, type: 3}
 --- !u!4 &656381315
 Transform:
   m_ObjectHideFlags: 0

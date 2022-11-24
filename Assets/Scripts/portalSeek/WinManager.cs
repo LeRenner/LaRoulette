@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WinManager : MonoBehaviour
 {
-    public PlayerPortal seeker;
+    public Seeker seeker;
     private bool seekerWon;
     public string winner;
     public Timer timer;
@@ -13,7 +13,7 @@ public class WinManager : MonoBehaviour
     void Start()
     {
         time = GameObject.Find("Timer").GetComponent<Timer>().countdown;
-        seeker = GameObject.FindGameObjectsWithTag("Seeker")[0].GetComponent<PlayerPortal>();
+        seeker = GameObject.FindGameObjectsWithTag("Seeker")[0].GetComponent<Seeker>();
         seekerWon = false;
         winner = null;
     }
@@ -36,8 +36,10 @@ public class WinManager : MonoBehaviour
     void checkForSeekerWin() {
         if (seeker) {
             seekerWon = seeker.seekerWon;
-            if (seekerWon)
+            if (seekerWon) {
                 winner = "Seeker";
+                Debug.Log("Yay!!!");
+            }
         }
     }
 }

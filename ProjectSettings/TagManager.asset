@@ -7,6 +7,10 @@ TagManager:
   - P1Goal
   - P2Goal
   - Out
+  - Seeker
+  - Hider
+  - SeekerSpawnpoint
+  - HiderSpawnpoint
   layers:
   - Default
   - TransparentFX
