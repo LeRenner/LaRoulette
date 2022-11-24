@@ -26,6 +26,8 @@ namespace Player
         public float airMultiplier;
         bool readyToJump = true;
 
+        public Transform orientation;
+
         KeyCode jumpKey = KeyCode.Space;
 
         float hInput;
@@ -110,15 +112,15 @@ namespace Player
 
         private void MovePlayer()
         {
-            Vector3 heading = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
-            moveDirection = heading * vInput + transform.right * hInput;
+            Vector3 heading = Vector3.ProjectOnPlane(orientation.forward, Vector3.up).normalized;
+            moveDirection = heading * vInput + orientation.right * hInput;
 
             if (isGrounded)
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
             else if (!isGrounded)
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
 
-            Camera.main.transform.position = transform.position;
+            Camera.main.transform.position = orientation.position;
         }
 
         private void FollowMouseView()
@@ -129,9 +131,9 @@ namespace Player
             yRotation += mouseX;
             xRotation = Mathf.Clamp(xRotation - mouseY, -90f, 90f);
 
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(xRotation, yRotation, 0);
 
-            Camera.main.transform.rotation = transform.rotation;
+            Camera.main.transform.rotation = orientation.rotation;
         }
 
         private void Jump()
