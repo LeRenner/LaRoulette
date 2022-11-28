@@ -33,15 +33,37 @@ public class goaltrigger : NetworkBehaviour
 
     public GameObject playerPrefab;
     public GameObject[] players;
+	public List<GameObject> redTeam = new List<GameObject>();
+	public List<GameObject> blueTeam = new List<GameObject>();
+	int i;
+	int lastSize;
 	//public PlayerController sc;
 
 	
 	[Command(requiresAuthority = false)]
 	private void Update()
 	{
-			if (players.Length != 1)
+			if (players.Length != 2)
+			{
 				players = GameObject.FindGameObjectsWithTag("Player");
-			
+				if (players.Length > lastSize)
+				{
+						lastSize = players.Length;
+						i = 0;
+					while (i < players.Length){
+						if (i % 2 == 0){
+							if(!redTeam.Contains(players[i]))
+								redTeam.Add(players[i]);
+						}
+						else{
+							if(!blueTeam.Contains(players[i]))
+								blueTeam.Add(players[i]);
+						}
+						i += 1;
+
+					}
+				}
+			}
 
 				foreach (GameObject player in players)
 				{
@@ -54,9 +76,26 @@ public class goaltrigger : NetworkBehaviour
 		{
 			trigger = true;
 			//
-			if (p1Score > p2Score) {pop = "Player 1 Wins";}
-			else if (p2Score > p1Score) {pop = "Player 2 Wins";}
-			else if (p1Score == p2Score) {pop = "Tie";}
+			if (p1Score > p2Score)
+			{
+				pop = "Player 1 Wins";
+				foreach(GameObject player in redTeam){
+					PlayerScore kObject = player.gameObject.GetComponent<PlayerScore>()	;
+       				kObject.AddVictory();
+				}
+			}
+			else if (p2Score > p1Score)
+			{
+				pop = "Player 2 Wins";
+				foreach(GameObject player in blueTeam){
+					PlayerScore kObject = player.gameObject.GetComponent<PlayerScore>()	;
+       				kObject.AddVictory();
+				}
+			}
+			else if (p1Score == p2Score)
+			{
+				pop = "Tie";
+			}
 
 
 

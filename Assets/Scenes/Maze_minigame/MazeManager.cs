@@ -14,7 +14,7 @@ public class MazeManager : NetworkBehaviour
 	{
 		if(other.CompareTag("Player"))
 		{
-			kObject = other.gameObject.GetComponent<PlayerScore>();
+			kObject = other.gameObject.GetComponent<PlayerScore>()	;
        		kObject.AddVictory();
 			NetworkManager.singleton.ServerChangeScene("Lobby");
 		}

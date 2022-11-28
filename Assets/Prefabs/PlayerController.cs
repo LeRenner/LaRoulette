@@ -37,6 +37,7 @@ namespace Mirror.Examples.AdditiveLevels
         Rigidbody rb;
         bool pressedjump = false;
         bool isGrounded;
+        
 
         float height;
         float mouseAxisX;
@@ -53,17 +54,19 @@ namespace Mirror.Examples.AdditiveLevels
             Camera.main.transform.SetParent(transform);
             Camera.main.transform.localPosition = new Vector3(0, 0, 0);
 
-            rb = GetComponent<Rigidbody>();
+            rb = this.GetComponent<Rigidbody>();
+            Debug.Log(rb);
             rb.freezeRotation = true;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             height = GetComponent<CapsuleCollider>().height;
         }
 
-        void FixedUpdate()
+       /* void FixedUpdate()
         {
+            //if (!isLocalPlayer) { return; }
             MovePlayer();
-        }
+        }*/
 
         void Update()
         {
@@ -88,14 +91,8 @@ namespace Mirror.Examples.AdditiveLevels
                 rb.drag = 0f;
 
             FollowMouseView();
-            
-            if (Input.GetKeyDown(KeyCode.J)){
-                number += 1;
-            }
+            MovePlayer();
 
-            if (Input.GetKeyDown(KeyCode.K)){
-                Debug.Log(number);
-            }
         }
 
         private void GetMoveInput()
@@ -123,8 +120,9 @@ namespace Mirror.Examples.AdditiveLevels
             if (isGrounded)
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
             else if (!isGrounded)
+            {
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-
+            }
             Camera.main.transform.position = transform.position;
         }
 

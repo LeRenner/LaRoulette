@@ -6,13 +6,11 @@ public class PlayerScore : NetworkBehaviour
 {
     public int Points;
     public static int Score;
+    public string Team;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J)){
-            Points += 1;
-            Score += Points;
-        }
+ 
 
         if (Input.GetKeyDown(KeyCode.K)){
             Debug.Log("Points" + Points);
@@ -28,4 +26,8 @@ public class PlayerScore : NetworkBehaviour
         Score += 1;
     }
 
+    public void AddTeam(string teamName)
+    {
+        Team = teamName;
+    }  
 }
