@@ -5,6 +5,7 @@ using UnityEngine;
 public class WinManager : MonoBehaviour
 {
     public Seeker seeker;
+    private GameObject[] seekerList;
     private bool seekerWon;
     public string winner;
     public Timer timer;
@@ -13,7 +14,11 @@ public class WinManager : MonoBehaviour
     void Start()
     {
         time = GameObject.Find("Timer").GetComponent<Timer>().countdown;
-        seeker = GameObject.FindGameObjectsWithTag("Seeker")[0].GetComponent<Seeker>();
+        seekerList = GameObject.FindGameObjectsWithTag("Seeker");
+        
+        if (seekerList.Length != 0)
+            seeker = seekerList[0].GetComponent<Seeker>();
+
         seekerWon = false;
         winner = null;
     }
@@ -21,12 +26,12 @@ public class WinManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!seekerWon) {
+        if (!seekerWon && time >= 0) {
             if (time > 0) {
                 time = GameObject.Find("Timer").GetComponent<Timer>().countdown;
                 checkForSeekerWin();
             }
-            else if (time == 0) { // pode dar problema aqui kk
+            else if (time == 0) {
                 winner = "Hider";
                 time--;
             }
@@ -38,7 +43,6 @@ public class WinManager : MonoBehaviour
             seekerWon = seeker.seekerWon;
             if (seekerWon) {
                 winner = "Seeker";
-                Debug.Log("Yay!!!");
             }
         }
     }

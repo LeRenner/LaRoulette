@@ -10,6 +10,8 @@ public class PortalSceneScript : MonoBehaviour
     private int time;
     private string winner;
 
+    public bool finish_game;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,8 +35,10 @@ public class PortalSceneScript : MonoBehaviour
 
     void checkWinner() {
         winner = GameObject.Find("WinManager").GetComponent<WinManager>().winner;
-        if (winner != null)
+        if (winner != null) {
             txt.text = winner + " wins!";
+            finish_game = true;
+        }
     }
 
 }

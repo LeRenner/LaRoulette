@@ -223,7 +223,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh36194
+  m_Name: pb_Mesh42804
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e2dda3e6601506481b14835e2f139c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seeker: {fileID: 0}
+  seeker: {fileID: 4843985942966673127, guid: 82d4b32f5cde4195089a430f48ce684b, type: 3}
   winner: 
   timer: {fileID: 646124692}
 --- !u!4 &244194208
@@ -597,7 +597,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28278
+  m_Name: pb_Mesh35782
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -845,6 +845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txt: {fileID: 276777845}
   timer: {fileID: 646124692}
+  finish_game: 0
 --- !u!1 &646124691
 GameObject:
   m_ObjectHideFlags: 0
