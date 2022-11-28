@@ -18,11 +18,10 @@ public class Interactable : NetworkBehaviour
     [SyncVar]
     public int readys = 0;
 
-
     [Client]
     void OnMouseUpAsButton()
     {
-	Debug.Log(clicked);
+	Debug.Log("Button is " + clicked);
 	clicked = !clicked;
         CmdSetButtonState(clicked);
 
@@ -55,9 +54,16 @@ public class Interactable : NetworkBehaviour
     {
       if (NetworkServer.connections.Count == readys)
       {
-        NetworkManager.singleton.ServerChangeScene(sceneName);
+            RouletteBehaviour.Speed = Random.Range(600, 800);
+            RouletteBehaviour.isSpinning = false;
       }
       return;
+    }
+
+    public static void startMatch(string sceneName)
+    {
+        NetworkManager.singleton.ServerChangeScene(sceneName);
+        return;
     }
 
 }
