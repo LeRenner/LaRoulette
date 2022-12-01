@@ -220,6 +220,7 @@ MonoBehaviour:
   jumpForce: 6
   jumpCooldown: 0.25
   airMultiplier: 0.5
+  orientation: {fileID: 6677157304128246175}
 --- !u!114 &7183387118429219115
 MonoBehaviour:
   m_ObjectHideFlags: 0

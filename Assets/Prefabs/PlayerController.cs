@@ -1,6 +1,8 @@
 ﻿using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using VivoxUnity;
+using System.Linq;
 
 namespace Mirror.Examples.AdditiveLevels
 {
@@ -38,10 +40,59 @@ namespace Mirror.Examples.AdditiveLevels
         bool pressedjump = false;
         bool isGrounded;
         
+        public Transform orientation;
 
         float height;
         float mouseAxisX;
         float mouseAxisY;
+
+        private VivoxVoiceManager vivoxVoiceManager;
+        private string LobbyChannelName = "default";
+
+        void Awake(){
+            vivoxVoiceManager = VivoxVoiceManager.Instance;
+            vivoxVoiceManager.OnUserLoggedInEvent += OnUserLoggedIn;
+        }
+
+        public override void OnStartClient() {
+            try
+            {
+                vivoxVoiceManager.Login();
+            }
+            catch (System.Exception)
+            {
+                Debug.LogError("<color=green>VivoxVoice: </color>: Falha no Login");
+            }
+        }
+
+
+        private void JoinLobbyChannel()
+        {
+            // Do nothing, participant added will take care of this
+            vivoxVoiceManager.JoinChannel(LobbyChannelName, ChannelType.NonPositional, VivoxVoiceManager.ChatCapability.AudioOnly);
+        }
+
+        private void OnUserLoggedIn()
+        {
+            var lobbychannel = vivoxVoiceManager.ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == LobbyChannelName);
+            if ((vivoxVoiceManager && vivoxVoiceManager.ActiveChannels.Count == 0) || lobbychannel == null)
+            {
+                JoinLobbyChannel();
+            }
+            else
+            {
+                if (lobbychannel.AudioState == ConnectionState.Disconnected)
+                {
+                    // Ask for hosts since we're already in the channel and part added won't be triggered.
+
+                    lobbychannel.BeginSetAudioConnected(true, true, ar =>
+                    {
+                        Debug.Log("Now transmitting into lobby channel");
+                    });
+                }
+
+            }
+        }
 
         void OnValidate()
         {
@@ -114,8 +165,8 @@ namespace Mirror.Examples.AdditiveLevels
 
         private void MovePlayer()
         {
-            Vector3 heading = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
-            moveDirection = heading * vInput + transform.right * hInput;
+            Vector3 heading = Vector3.ProjectOnPlane(orientation.forward, Vector3.up).normalized;
+            moveDirection = heading * vInput + orientation.right * hInput;
 
             if (isGrounded)
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
@@ -123,7 +174,7 @@ namespace Mirror.Examples.AdditiveLevels
             {
                 rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
             }
-            Camera.main.transform.position = transform.position;
+            Camera.main.transform.position = orientation.position;
         }
 
         private void FollowMouseView()
@@ -134,9 +185,9 @@ namespace Mirror.Examples.AdditiveLevels
             yRotation += mouseX;
             xRotation = Mathf.Clamp(xRotation - mouseY, -90f, 90f);
 
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(xRotation, yRotation, 0);
 
-            Camera.main.transform.rotation = transform.rotation;
+            Camera.main.transform.rotation = orientation.rotation;
         }
 
         private void Jump()
