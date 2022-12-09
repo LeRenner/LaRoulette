@@ -21,6 +21,9 @@ namespace Mirror.Examples.AdditiveLevels
 
         [Header("Movement")]
         public float moveSpeed;
+        public float defaultSpeed;
+        public float sprintSpeed;
+        private bool sprintPressed;
         public float dragForce;
 
         public float jumpForce;
@@ -50,6 +53,7 @@ namespace Mirror.Examples.AdditiveLevels
         private string LobbyChannelName = "default";
 
         void Awake(){
+            defaultSpeed = moveSpeed;
             vivoxVoiceManager = VivoxVoiceManager.Instance;
             vivoxVoiceManager.OnUserLoggedInEvent += OnUserLoggedIn;
         }
@@ -108,8 +112,8 @@ namespace Mirror.Examples.AdditiveLevels
             rb = this.GetComponent<Rigidbody>();
             Debug.Log(rb);
             rb.freezeRotation = true;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
             height = GetComponent<CapsuleCollider>().height;
         }
 
@@ -122,6 +126,8 @@ namespace Mirror.Examples.AdditiveLevels
         void Update()
         {
             if (!isLocalPlayer) { return; }
+
+            velocityCheck();
 
             isGrounded = Physics.Raycast(transform.position, Vector3.down, height * 0.5f + 0.2f);
 
@@ -218,6 +224,22 @@ namespace Mirror.Examples.AdditiveLevels
      	public void MouseY(InputAction.CallbackContext value) {
             mouseAxisY = value.ReadValue<float>();
     	}       
+
+        public void Sprint(InputAction.CallbackContext value) {
+            sprintPressed = !sprintPressed;
+        }
+
+        private void velocityCheck()
+        {
+            if (sprintPressed)
+            {
+                moveSpeed = sprintSpeed;
+            }
+            else{
+                moveSpeed = defaultSpeed;
+            }
+        }
+
 
     }
 }
