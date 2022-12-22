@@ -6,6 +6,7 @@ jobs:
   build:
     name: Build my project ✨
     runs-on: ubuntu-latest
+    allowDirtyBuild: true
     steps:
 
       # Checkout (without LFS)

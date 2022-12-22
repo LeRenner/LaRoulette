@@ -15,8 +15,9 @@ public class MovementTests
     {
 
         GameObject gameGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Timer"));
-        yield return null;       
-        
+        yield return null;
+        //Debug.Log(gameGameObject.layer);
+        Assert.AreEqual(gameGameObject.layer, 5);
         // Use the Assert class to test conditions
     }
 
@@ -24,9 +25,9 @@ public class MovementTests
     public IEnumerator AssertPropertiesOfDifferentPlayerPrefabs()
     {
 
-        GameObject gameGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Timer"));
-        yield return null;       
         
+        yield return null;       
+     
         // Use the Assert class to test conditions
     }
 
@@ -34,18 +35,18 @@ public class MovementTests
     public IEnumerator AssertPortalGateProperties()
     {
 
-        GameObject gameGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Timer"));
+        GameObject gameGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("PortalGate"));
         yield return null;       
-        
+        Assert.NotNull(gameGameObject.GetComponent<SphereCollider>());
         // Use the Assert class to test conditions
     }
 
 
     [UnityTest]
-    public IEnumerator AssertPlayer()
+    public IEnumerator AssertPlayerHasMoved()
     {
 
-        GameObject gameGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Timer"));
+        
         yield return null;       
         
         // Use the Assert class to test conditions
@@ -56,9 +57,9 @@ public class MovementTests
     public IEnumerator AssertButtonProperties()
     {
 
-        GameObject gameGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Timer"));
+        GameObject gameGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Button"));
         yield return null;       
-        
+        Assert.NotNull(gameGameObject.GetComponent<BoxCollider>());
         // Use the Assert class to test conditions
     }
 
