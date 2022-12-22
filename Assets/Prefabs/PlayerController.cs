@@ -49,53 +49,27 @@ namespace Mirror.Examples.AdditiveLevels
         float mouseAxisX;
         float mouseAxisY;
 
-        private VivoxVoiceManager vivoxVoiceManager;
+        
         private string LobbyChannelName = "default";
 
         void Awake(){
             defaultSpeed = moveSpeed;
-            vivoxVoiceManager = VivoxVoiceManager.Instance;
-            vivoxVoiceManager.OnUserLoggedInEvent += OnUserLoggedIn;
         }
 
         public override void OnStartClient() {
-            try
-            {
-                vivoxVoiceManager.Login();
-            }
-            catch (System.Exception)
-            {
-                Debug.LogError("<color=green>VivoxVoice: </color>: Falha no Login");
-            }
+            
         }
 
 
         private void JoinLobbyChannel()
         {
             // Do nothing, participant added will take care of this
-            vivoxVoiceManager.JoinChannel(LobbyChannelName, ChannelType.NonPositional, VivoxVoiceManager.ChatCapability.AudioOnly);
+            
         }
 
         private void OnUserLoggedIn()
         {
-            var lobbychannel = vivoxVoiceManager.ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == LobbyChannelName);
-            if ((vivoxVoiceManager && vivoxVoiceManager.ActiveChannels.Count == 0) || lobbychannel == null)
-            {
-                JoinLobbyChannel();
-            }
-            else
-            {
-                if (lobbychannel.AudioState == ConnectionState.Disconnected)
-                {
-                    // Ask for hosts since we're already in the channel and part added won't be triggered.
-
-                    lobbychannel.BeginSetAudioConnected(true, true, ar =>
-                    {
-                        Debug.Log("Now transmitting into lobby channel");
-                    });
-                }
-
-            }
+            
         }
 
         void OnValidate()
