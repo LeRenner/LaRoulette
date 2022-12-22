@@ -6,7 +6,6 @@ jobs:
   build:
     name: Build my project ✨
     runs-on: ubuntu-latest
-    allowDirtyBuild: true
     steps:
 
       # Checkout (without LFS)
@@ -64,7 +63,8 @@ jobs:
             UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
             UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-            targetPlatform: WebGL
+            allowDirtyBuild: true
+            targetPlatform: StandaloneLinux64
 
       # Output
       - uses: actions/upload-artifact@v2
