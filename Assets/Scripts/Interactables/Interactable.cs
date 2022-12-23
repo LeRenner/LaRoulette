@@ -53,11 +53,18 @@ public class Interactable : NetworkBehaviour
 
     public void CmdStartMatch()
     {
-      if (NetworkServer.connections.Count == readys)
-      {
+        if (NetworkServer.connections.Count == readys)
+        {
+            RouletteBehaviour.Speed = Random.Range(600, 800);
+            RouletteBehaviour.isSpinning = false;
+        }
+        return;
+    }
+
+    public static void startMatch(string sceneName)
+    {
         NetworkManager.singleton.ServerChangeScene(sceneName);
-      }
-      return;
+        return;
     }
 
 }

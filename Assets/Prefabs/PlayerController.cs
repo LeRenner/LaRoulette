@@ -23,7 +23,7 @@ namespace Mirror.Examples.AdditiveLevels
         public float moveSpeed;
         public float defaultSpeed;
         public float sprintSpeed;
-        private bool sprintPressed;
+        private bool sprintPressed = false;
         public float dragForce;
 
         public float jumpForce;
@@ -115,6 +115,7 @@ namespace Mirror.Examples.AdditiveLevels
             //Cursor.lockState = CursorLockMode.Locked;
             //Cursor.visible = false;
             height = GetComponent<CapsuleCollider>().height;
+            Input.gyro.enabled = true;
         }
 
        /* void FixedUpdate()
@@ -147,9 +148,38 @@ namespace Mirror.Examples.AdditiveLevels
             else
                 rb.drag = 0f;
 
-            FollowMouseView();
+            if (SystemInfo.deviceType == DeviceType.Handheld)
+            {
+                GyroModifyCamera();
+            }
+            else
+            {
+                FollowMouseView();
+            }
             MovePlayer();
+        }
 
+        private void GyroModifyCamera()
+        {
+            //float GiroY = Input.gyro.rotationRateUnbiased.y;
+            //orientation.Rotate(0, -8 * GiroY, 0);
+            //Camera.main.transform.Rotate(0, -8 * GiroY, 0);
+            //orientation.rotation = Quaternion.Euler(10 * Input.gyro.attitude.x, -10 * Input.gyro.attitude.y, 0);
+            //Camera.main.transform.rotation = orientation.rotation;
+            Vector3 previousEulerAngles = orientation.transform.eulerAngles;
+            Vector3 gyroInput = -Input.gyro.rotationRateUnbiased;
+
+            Vector3 targetEulerAngles = previousEulerAngles + gyroInput * Time.deltaTime * Mathf.Rad2Deg;
+            targetEulerAngles.x = 0.0f; // Only this line has been added
+            targetEulerAngles.z = 0.0f;
+
+            orientation.transform.eulerAngles = targetEulerAngles;
+            Camera.main.transform.rotation = orientation.rotation;
+        }
+
+        private static Quaternion GyroToUnity(Quaternion q)
+        {
+            return new Quaternion(q.x, q.y, -q.z, -q.w);
         }
 
         private void GetMoveInput()
