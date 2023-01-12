@@ -1,6 +1,6 @@
 # LaRoulette
 
-**Atualizado em: 19/12**
+**Atualizado em: 11/01**
 
 Esse projeto foi desenvolvido para a disciplina MAC0472: Laboratório de Métodos Ágeis ministrada no 2º semestre de 2022 pelo professor Alfredo Goldman.
 
@@ -9,6 +9,8 @@ O objetivo do projeto é desenvolver um jogo multiplayer 3D a partir do Unity
 ---- 
 
 ## Jogo
+
+Trailer: https://www.youtube.com/watch?v=cx9mJGc0N_0
 
 O jogo é uma competição entre players em minigames. Até agora, há dois minigames funcionais: o jogo de futebol e o labirinto.
 
